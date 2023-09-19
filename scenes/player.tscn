@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://di81602np2imo"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_56fyn"]
+[ext_resource type="Texture2D" uid="uid://bw7t7px56j8y0" path="res://art/barbarian/barbarian/barbarian_without axe.png" id="2_ufmyq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3urs7"]
+atlas = ExtResource("2_ufmyq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jgtq"]
+atlas = ExtResource("2_ufmyq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s7nj"]
+atlas = ExtResource("2_ufmyq")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rytf5"]
+atlas = ExtResource("2_ufmyq")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ek510"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3urs7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jgtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s7nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rytf5")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nolo5"]
+radius = 7.0
+height = 22.0
+
+[node name="Player" type="CharacterBody2D"]
+disable_mode = 2
+script = ExtResource("1_56fyn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ek510")
+animation = &"walking"
+frame_progress = 0.266897
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_nolo5")

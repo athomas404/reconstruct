@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlta5htmysf2v"]
+
+[ext_resource type="Texture2D" uid="uid://bw7t7px56j8y0" path="res://art/barbarian/barbarian/barbarian_without axe.png" id="1_ldqt3"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_x3rjo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3urs7"]
+atlas = ExtResource("1_ldqt3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orpfp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3urs7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tgt4x"]
+radius = 7.0
+height = 22.0
+
+[node name="Character" type="Area2D"]
+script = ExtResource("1_x3rjo")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_orpfp")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_tgt4x")
